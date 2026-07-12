@@ -1,0 +1,8 @@
+package com.asisfit.asisfit.dto;
+
+public record UsuarioDTO(
+        Long id,
+        String nombre, String apellido,String email,String telefono,String nivel
+) {
+}
+
