@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres-asisfitt
+    environment:
+      POSTGRES_DB: asisfitt
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 6272
+    ports:
+      - "5435:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  asisfitt:
+    image: asisfitt:latest
+    container_name: asisfitt
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/asisfitt
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 6272
+    depends_on:
+      - postgres
+
+volumes:
+  postgres-data:
